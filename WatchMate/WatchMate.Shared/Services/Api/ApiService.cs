@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Threading.Tasks;
-using System.Web;
 using Microsoft.AspNetCore.WebUtilities;
 using WatchMate.Shared.Resources.Strings;
 
@@ -30,8 +26,9 @@ class ApiService : IApiService
     string ApiKey => _apiKey ??= PrivateStrings.TMDBApiV3Key;
 
 
-    public async Task<T> Get<T>(string endpoint, Dictionary<string, string> parameters) where T : class?
+    public async Task<T> Get<T>(string endpoint, Dictionary<string, string>? parameters = null) where T : class?
     {
+        parameters ??= new Dictionary<string, string>();
         parameters.Add("api_key", ApiKey);
         var queryString = QueryHelpers.AddQueryString(endpoint, parameters);
         var response = await _httpClient.GetAsync(queryString);
@@ -51,5 +48,10 @@ class ApiService : IApiService
         }
 
         return result;
+    }
+
+    public Task<byte[]> GetBytes(string endpoint)
+    {
+        return _httpClient.GetByteArrayAsync(endpoint);
     }
 }

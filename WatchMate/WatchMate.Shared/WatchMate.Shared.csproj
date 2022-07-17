@@ -60,8 +60,9 @@
 
   <ItemGroup>
     <Folder Include="Constants\" />
-    <Folder Include="Models\" />
+    <Folder Include="Converters\" />
     <Folder Include="Services\Api\" />
+    <Folder Include="Services\Configuration\" />
     <Folder Include="Services\Search\" />
   </ItemGroup>
 

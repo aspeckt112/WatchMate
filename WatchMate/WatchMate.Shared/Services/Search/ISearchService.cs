@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using WatchMate.Shared.Models;
 
 namespace WatchMate.Shared.Services.Search;
 

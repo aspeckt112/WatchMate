@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
+using WatchMate.Shared.Models;
+using WatchMate.Shared.Models.DisplayItems;
+using WatchMate.Shared.Services.Configuration;
+using WatchMate.Shared.Services.Images;
 using WatchMate.Shared.Services.Search;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
@@ -12,12 +16,14 @@ namespace WatchMate.Shared.ViewModels
 
         readonly ISearchService _searchService;
 
-        public SearchPageViewModel(INavigation navigation, ISearchService searchService)
+        readonly IImageService _imageService;
+
+        public SearchPageViewModel(INavigation navigation, ISearchService searchService, IImageService imageService)
         {
             _navigation = navigation;
             _searchService = searchService;
+            _imageService = imageService;
         }
-
 
         string? _searchTerm;
 
@@ -27,6 +33,14 @@ namespace WatchMate.Shared.ViewModels
             set => SetProperty(ref _searchTerm, value);
         }
 
+        ObservableRangeCollection<SearchResultDisplayItem> _searchResults = new();
+
+        public ObservableRangeCollection<SearchResultDisplayItem> SearchResults
+        {
+            get => _searchResults;
+            private set => SetProperty(ref _searchResults, value);
+        }
+
         AsyncCommand? _searchCommand;
 
         public AsyncCommand SearchCommand =>
@@ -34,15 +48,29 @@ namespace WatchMate.Shared.ViewModels
 
         async Task OnSearchCommandExecuted()
         {
-            var searchResultRoot = await _searchService.Search(SearchTerm!).ConfigureAwait(true);
-
-            if (searchResultRoot.TotalResults == 0)
+            try
             {
-                return;
+                var searchResultRoot = await _searchService.Search(SearchTerm!).ConfigureAwait(true);
+
+                if (searchResultRoot.TotalResults == 0 || searchResultRoot.Results is null)
+                {
+                    return;
+                }
+
+                foreach (var searchResult in searchResultRoot.Results)
+                {
+                    SearchResults.Add(new SearchResultDisplayItem(_imageService, searchResult.PosterPath)
+                    {
+                        Title = searchResult.Title ?? searchResult.Name // TMDB Api will return title for a movie, or name for a show.
+                    });
+                }
             }
-
-            App.Current.MainPage.DisplayAlert("Working?", "Working?", "OK");
-
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+           
         }
     }
 }

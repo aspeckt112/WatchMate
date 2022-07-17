@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using WatchMate.Shared.Models;
 using WatchMate.Shared.Services.Api;
 
 namespace WatchMate.Shared.Services.Search;
