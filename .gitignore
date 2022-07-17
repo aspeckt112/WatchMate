@@ -348,3 +348,13 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+WatchMate/WatchMate.Shared/Resources/Fonts/Font Awesome 6 Brands-Regular-400.otf
+
+WatchMate/WatchMate.Shared/Resources/Fonts/Font Awesome 6 Free-Regular-400.otf
+
+WatchMate/WatchMate.Shared/Resources/Fonts/Font Awesome 6 Free-Solid-900.otf
+
+WatchMate/WatchMate.Shared/Resources/Strings/PrivateStrings.Designer.cs
+
+WatchMate/WatchMate.Shared/Resources/Strings/PrivateStrings.resx

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<forms:TabbedPage
+    x:Class="WatchMate.Shared.Views.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:constants="clr-namespace:WatchMate.Shared.Constants;assembly=WatchMate.Shared"
+    xmlns:forms="http://xamarin.com/schemas/2014/forms"
+    xmlns:strings="clr-namespace:WatchMate.Shared.Resources.Strings;assembly=WatchMate.Shared"
+    xmlns:views="clr-namespace:WatchMate.Shared.Views;assembly=WatchMate.Shared"
+    android:TabbedPage.ToolbarPlacement="Bottom">
+    <forms:TabbedPage.Children>
+        <views:WatchListPage Title="{x:Static strings:AppStrings.MainPage_Tab_Title_WatchListPage}">
+            <views:WatchListPage.IconImageSource>
+                <FontImageSource FontFamily="FA-S" Glyph="{x:Static constants:FontAwesomeIcons.List}" />
+            </views:WatchListPage.IconImageSource>
+        </views:WatchListPage>
+        <views:SettingsPage Title="{x:Static strings:AppStrings.MainPage_Tab_Title_Settings}">
+            <views:SettingsPage.IconImageSource>
+                <FontImageSource FontFamily="FA-S" Glyph="{x:Static constants:FontAwesomeIcons.Settings}" />
+            </views:SettingsPage.IconImageSource>
+        </views:SettingsPage>
+    </forms:TabbedPage.Children>
+</forms:TabbedPage>

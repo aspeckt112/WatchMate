@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="WatchMate.Shared.Views.WatchListPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:constants="clr-namespace:WatchMate.Shared.Constants;assembly=WatchMate.Shared"
+    xmlns:strings="clr-namespace:WatchMate.Shared.Resources.Strings;assembly=WatchMate.Shared"
+    xmlns:viewModels="clr-namespace:WatchMate.Shared.ViewModels;assembly=WatchMate.Shared"
+    x:DataType="viewModels:WatchListPageViewModel"
+    BackgroundColor="Aquamarine">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding GoToSearchPageCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="FA-S" Glyph="{x:Static constants:FontAwesomeIcons.Search}" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+</ContentPage>

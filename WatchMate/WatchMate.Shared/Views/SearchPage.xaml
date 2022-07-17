@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="WatchMate.Shared.Views.SearchPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:strings="clr-namespace:WatchMate.Shared.Resources.Strings;assembly=WatchMate.Shared"
+    xmlns:viewModels="clr-namespace:WatchMate.Shared.ViewModels;assembly=WatchMate.Shared"
+    Title="{x:Static strings:AppStrings.SearchPage_Title}"
+    x:DataType="viewModels:SearchPageViewModel">
+    <ContentPage.Content>
+        <StackLayout>
+            <SearchBar
+                Placeholder="{x:Static strings:AppStrings.SearchPage_SearchBar_Placeholder}"
+                SearchCommand="{Binding SearchCommand}"
+                Text="{Binding SearchTerm}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
